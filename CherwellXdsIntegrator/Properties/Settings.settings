@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CherwellXdsIntegrator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CherwellXdsIntegrator_za_co_xds_web_www_XDSConnectWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.web.xds.co.za/uatxdsconnect/XDSConnectWS.asmx</Value>
+    </Setting>
+    <Setting Name="CherwellXdsIntegrator_CherwellAPI_api" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/CherwellService/api.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
