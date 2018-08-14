@@ -20,8 +20,10 @@ namespace CherwellXdsIntegrator
     public class WebService1 : WebService
     {
         private readonly XDSConnectWS _webService = new XDSConnectWS();
-        private int _enquiryId;
-        private int _enquiryResultId;
+        private int _enquiryId; 
+        private int _enquiryResultId;   
+        private const string XdsUrl = "http://localhost/CherwellXdsIntegrator/CherwellXdsIntegrator.asmx";
+        private const string CherwellUrl = "http://localhost/cherwellservice/api.asmx";
 
         [WebMethod]
         public string CorporateScore(string xdsUrl, string cherwellUrl, string cmsUsrName, string cmsUsrPwd,
@@ -29,7 +31,7 @@ namespace CherwellXdsIntegrator
             string reg2, string reg3, string businessName, string vatNo, string reference, string ticket,
             string productionId, bool attachXml, bool attachPdf, string recId)
         {
-            _webService.Url = xdsUrl;
+            _webService.Url = XdsUrl;
             var myMatch = _webService.ConnectBusinessMatch(ticket, reg1, reg2, reg3, businessName, vatNo, string.Empty,
                 reference, string.Empty);
             _enquiryId = int.Parse(XmlReaders.FindXmlValue(myMatch, "EnquiryID"));
@@ -82,7 +84,7 @@ namespace CherwellXdsIntegrator
             string reference, string ticket, string firstName, string lastname,
             string productionId, bool attachXml, bool attachPdf, string recId)
         {
-            _webService.Url = xdsUrl;
+            _webService.Url = XdsUrl;
             var myMatch = _webService.ConnectConsumerMatch(ticket, reason, int.Parse(productionId), idNo,
                 passportNumber,
                 firstName, lastname, dob, reference, string.Empty);
@@ -96,12 +98,12 @@ namespace CherwellXdsIntegrator
             var attachments = new Attachements();
             if (attachXml)
             {
-                attachments.AttachXml(cherwellUrl, cmsUsrName, cmsUsrPwd, recId, xdsResult);
+                attachments.AttachXml(CherwellUrl, cmsUsrName, cmsUsrPwd, recId, xdsResult);
             }
 
             if (attachPdf)
             {
-                attachments.AttachPdf(cherwellUrl, cmsUsrName, cmsUsrPwd, recId, ticket, productionId, _enquiryId, _enquiryResultId);
+                attachments.AttachPdf(CherwellUrl, cmsUsrName, cmsUsrPwd, recId, ticket, productionId, _enquiryId, _enquiryResultId);
             }
 
             var results = new Results
